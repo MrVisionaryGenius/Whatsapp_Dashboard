@@ -28,6 +28,15 @@ if uploaded_file is not None:
     st.header("Dataset after Removing Duplicates")
     st.dataframe(data_deduped)
     
+    # Add download button for deduplicated data
+    csv = data_deduped.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="Download Deduplicated Data as CSV",
+        data=csv,
+        file_name="deduplicated_data.csv",
+        mime="text/csv"
+    )
+    
     # Count of numbers based on different recruiters
     recruiter_counts = data_deduped['recruiter'].value_counts()
     
